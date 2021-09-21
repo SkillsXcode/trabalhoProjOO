@@ -11,7 +11,7 @@ public class Principal {
 		Emprestimo emprestimo = new Emprestimo(23655, breno, valorEmprestado);
 		
 		Quitado quite = new Quitado();
-		Aprovado aprv = new Aprovado(jurosFicticio);
+		Aprovado aprv = new Aprovado(jurosFicticio, valorEmprestado);
 		//Aprovado outroAprvTest = new Aprovado(jurosFicticio);
 		Negado negado = new Negado();
 		EmAberto emAberto = new EmAberto();
@@ -23,10 +23,10 @@ public class Principal {
 		quite.acao(emprestimo);
 		aprv.acao(emprestimo);
 		System.out.println(emprestimo.getValor());*/
-		
+		emprestimo.setSituacao(aprv);
+		emprestimo.setSituacao(quite);
 		emprestimo.setSituacao(aprv);
 		emprestimo.setSituacao(emAberto);
-		emprestimo.setSituacao(negado);
 		
 		
 		//pseudo-interface

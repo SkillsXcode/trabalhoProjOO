@@ -21,9 +21,9 @@ public class Emprestimo {
 		if(validaAprovacao()) {
 			System.out.println("Insira uma taxa: ");
 			BigDecimal jurosFicticio = new BigDecimal("0.12");
-			this.situacao = new Aprovado(jurosFicticio);
+			this.situacao = new Aprovado(jurosFicticio, getValor());
+			this.situacao.acao(this);
 		}
-		
 	}
 
 	private void negar() {
@@ -32,13 +32,17 @@ public class Emprestimo {
 			this.situacao.acao(this);
 		}
 		
-
 		// impedir de outras ações sejam acionadas quando o empréstimo for negado
 	}
 
 	private void quitar() {
-		this.situacao = new Quitado();
-		this.situacao.acao(this);
+		if(validaQuitado()) {
+			this.situacao = new Quitado();
+			this.situacao.acao(this);
+		} else if (this.situacao == null){
+			System.out.println("Primeiro realize um empréstimo, antes de quitá-lo.");
+		}
+		
 		// instanciar um quitado
 
 	}
@@ -65,6 +69,9 @@ public class Emprestimo {
 	/* No contexto de produção, esses if's seriam reduzidos pelo Strategy, 
 	porém o foco do trabalho não é esse e a aplicação desse padrão comprometeria a
 	demonstração do State */
+	
+	/* Necessário para manutenção da regra de negócio */
+	
 	protected boolean validaAprovacao() {
 		if (situacao instanceof Quitado) {
 			System.out.println("Empréstimo quitado, informe ao cliente!");
@@ -78,7 +85,7 @@ public class Emprestimo {
 		return false;
 	}
 	
-	protected boolean validaEmAberto() {
+	private boolean validaEmAberto() {
 		if (situacao instanceof Quitado) {
 			System.out.println("Empréstimo quitado, informe ao cliente!");
 		} else if (situacao instanceof Negado) {
@@ -89,7 +96,8 @@ public class Emprestimo {
 		return false;
 	}
 	
-	protected boolean validaNegado() {
+	private boolean validaNegado() {
+		
 		if (situacao instanceof Quitado) {
 			System.out.println("Empréstimo quitado, informe ao cliente!");
 		} else if (situacao instanceof EmAberto) {
@@ -101,12 +109,25 @@ public class Emprestimo {
 		}
 		return false;
 	}
+	
+	private boolean validaQuitado() {
+		if (situacao instanceof Negado) {
+			System.out.println("Empréstimo negado, informe ao cliente!");
+		} else if (situacao instanceof EmAberto) {
+			System.out.println("Empréstimo em aberto, informe ao cliente!");
+		} else if (situacao instanceof Aprovado) {
+			System.out.println("Este empréstimo já foi aprovado!");
+		} else {
+			return true;
+		}
+		return false;
+	}
 
-	protected BigDecimal getValor() {
+	private BigDecimal getValor() {
 		return valor;
 	}
 
-	protected void setValor(BigDecimal valor) {
+	private void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 
