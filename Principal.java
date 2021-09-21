@@ -23,8 +23,8 @@ public class Principal {
 		quite.acao(emprestimo);
 		aprv.acao(emprestimo);
 		System.out.println(emprestimo.getValor());*/
-		emprestimo.setSituacao(aprv);
-		emprestimo.setSituacao(quite);
+		emprestimo.setSituacao(emAberto);
+		emprestimo.setSituacao(negado);
 		emprestimo.setSituacao(aprv);
 		emprestimo.setSituacao(emAberto);
 		

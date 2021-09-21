@@ -16,8 +16,6 @@ public class Aprovado implements SituacaoEmprestimo {
 		// TODO Auto-generated method stub
 		System.out.println("Aprovado!");
 		
-		
-		
 		System.out.println("Valor a ser devolvido: " + 
 							calcularIndiceJuros(jurosTeste, this.valorEmprestimo));
 	
