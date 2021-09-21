@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 
 public class Aprovado implements SituacaoEmprestimo {
 	
-	BigDecimal jurosTeste; //lembrar de tirar o <teste/>
+	BigDecimal juros;
 	BigDecimal valorEmprestimo;
 	
-	public Aprovado(BigDecimal jurosTeste, BigDecimal valorEmprestimo) {
-		this.jurosTeste = jurosTeste;
+	public Aprovado(BigDecimal juros, BigDecimal valorEmprestimo) {
+		this.juros = juros;
 		this.valorEmprestimo = valorEmprestimo;
 	}
 
@@ -16,7 +16,7 @@ public class Aprovado implements SituacaoEmprestimo {
 	public void acao(Emprestimo emprestimo) {
 		System.out.println("Aprovado!");
 		System.out.println("Valor a ser devolvido: " + 
-							calcularIndiceJuros(jurosTeste, this.valorEmprestimo));
+							calcularIndiceJuros(juros, this.valorEmprestimo));
 	}
 	
 	public BigDecimal calcularIndiceJuros(BigDecimal indice, BigDecimal emprestimo) {

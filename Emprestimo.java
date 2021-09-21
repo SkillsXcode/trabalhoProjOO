@@ -118,6 +118,11 @@ public class Emprestimo {
 			System.out.println("Empréstimo negado, informe ao cliente!");
 		} else if (this.situacao instanceof EmAberto) {
 			System.out.println("Empréstimo em aberto, informe ao cliente!");
+			
+		} else if (this.situacao instanceof Quitado) {
+			System.out.println("Empréstimo quitado!");
+		} else {
+			
 			return true;
 		} 
 		return false;
