@@ -15,7 +15,7 @@ public class Emprestimo {
 		this.valor = valor;
 	}
 
-	private void aprovar() { 
+	private void aprovar() {
 		if (validaAprovacao()) {
 			System.out.println("Insira uma taxa: ");
 			BigDecimal jurosFicticio = new BigDecimal("0.12");
@@ -43,7 +43,7 @@ public class Emprestimo {
 		if (situacao instanceof Quitado) {
 			if (this.situacao == null) {
 				System.out.println("Primeiro realize um empréstimo, antes de quitá-lo.");
-			}else {
+			} else {
 				quitar();
 			}
 		} else if (situacao instanceof Negado) {
@@ -83,7 +83,7 @@ public class Emprestimo {
 	}
 
 	private boolean validaEmAberto() {
-		
+
 		if (this.situacao instanceof Quitado) {
 			System.out.println("Empréstimo quitado, informe ao cliente!");
 		} else if (this.situacao instanceof Negado) {
@@ -118,13 +118,13 @@ public class Emprestimo {
 			System.out.println("Empréstimo negado, informe ao cliente!");
 		} else if (this.situacao instanceof EmAberto) {
 			System.out.println("Empréstimo em aberto, informe ao cliente!");
-			
+
 		} else if (this.situacao instanceof Quitado) {
 			System.out.println("Empréstimo quitado!");
 		} else {
-			
+
 			return true;
-		} 
+		}
 		return false;
 	}
 
