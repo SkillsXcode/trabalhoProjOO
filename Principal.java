@@ -25,13 +25,9 @@ public class Principal {
 		System.out.println(emprestimo.getValor());*/
 		
 		emprestimo.setSituacao(aprv);
-		emprestimo.setSituacao(quite);
-		emprestimo.setSituacao(aprv);
-		emprestimo.setSituacao(negado);
-		emprestimo.setSituacao(aprv);
 		emprestimo.setSituacao(emAberto);
-		// ^ adaptar para latch
-		System.out.println(emprestimo.getValor());
+		emprestimo.setSituacao(negado);
+		
 		
 		//pseudo-interface
 		/*
