@@ -3,13 +3,11 @@ package situacao;
 import java.math.BigDecimal;
 
 public class Emprestimo {
-	// abstrair para orquestrador
+
 	private BigDecimal valor;
 	private Beneficiado beneficiado;
 	private int numeroContrato;
 	private SituacaoEmprestimo situacao;
-
-	// situação definida aleatoriamente
 
 	public Emprestimo(int numeroContrato, Beneficiado beneficiado, BigDecimal valor) {
 		this.numeroContrato = numeroContrato;
@@ -17,7 +15,7 @@ public class Emprestimo {
 		this.valor = valor;
 	}
 
-	private void aprovar() { // alterar visibilidade
+	private void aprovar() { 
 		if (validaAprovacao()) {
 			System.out.println("Insira uma taxa: ");
 			BigDecimal jurosFicticio = new BigDecimal("0.12");
@@ -31,39 +29,33 @@ public class Emprestimo {
 			this.situacao = new Negado();
 			this.situacao.acao(this);
 		}
-
-		// impedir de outras ações sejam acionadas quando o empréstimo for negado
 	}
 
 	private void quitar() {
 		if (validaQuitado()) {
 			this.situacao = new Quitado();
 			this.situacao.acao(this);
-		} else if (this.situacao == null) {
-			System.out.println("Primeiro realize um empréstimo, antes de quitá-lo.");
 		}
-
-		// instanciar um quitado
-
 	}
 
 	public void setSituacao(SituacaoEmprestimo situacao) {
 
 		if (situacao instanceof Quitado) {
-			quitar();
+			if (this.situacao == null) {
+				System.out.println("Primeiro realize um empréstimo, antes de quitá-lo.");
+			}else {
+				quitar();
+			}
 		} else if (situacao instanceof Negado) {
 			negar();
 		} else if (situacao instanceof EmAberto) {
-
 			if (validaEmAberto()) {
 				this.situacao = new EmAberto();
 				this.situacao.acao(this);
 			}
-
 		} else if (situacao instanceof Aprovado) {
 			aprovar();
 		}
-
 	}
 
 	/*
@@ -137,9 +129,4 @@ public class Emprestimo {
 	private BigDecimal getValor() {
 		return valor;
 	}
-
-	private void setValor(BigDecimal valor) {
-		this.valor = valor;
-	}
-
 }

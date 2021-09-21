@@ -3,7 +3,8 @@ package situacao;
 import java.math.BigDecimal;
 
 public class Aprovado implements SituacaoEmprestimo {
-	BigDecimal jurosTeste; //lembrar de tirar, teste
+	
+	BigDecimal jurosTeste; //lembrar de tirar o <teste/>
 	BigDecimal valorEmprestimo;
 	
 	public Aprovado(BigDecimal jurosTeste, BigDecimal valorEmprestimo) {
@@ -13,17 +14,12 @@ public class Aprovado implements SituacaoEmprestimo {
 
 	@Override
 	public void acao(Emprestimo emprestimo) {
-		// TODO Auto-generated method stub
 		System.out.println("Aprovado!");
-		
 		System.out.println("Valor a ser devolvido: " + 
 							calcularIndiceJuros(jurosTeste, this.valorEmprestimo));
-	
 	}
-	
 	
 	public BigDecimal calcularIndiceJuros(BigDecimal indice, BigDecimal emprestimo) {
 		return emprestimo.multiply(indice);
 	}
-
 }
