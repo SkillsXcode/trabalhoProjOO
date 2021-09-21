@@ -66,7 +66,7 @@ public class Emprestimo {
 
 	/* Necessário para manutenção da regra de negócio */
 
-	public boolean validaAprovacao() {
+	private boolean validaAprovacao() {
 
 		if (this.situacao instanceof Quitado) {
 			System.out.println("Empréstimo quitado, informe ao cliente!");
